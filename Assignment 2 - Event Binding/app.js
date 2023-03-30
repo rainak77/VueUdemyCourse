@@ -1,7 +1,8 @@
 const app = Vue.createApp({
     data() {
       return {               
-        confirmedName:'',       
+        confirmedName:'',
+        entername:'',
         confirmedEntername:''
       };
     },
@@ -13,8 +14,11 @@ const app = Vue.createApp({
         this.confirmedName = event.target.value;
       },
 
-      enterName(event){
-        this.confirmedEntername = event.target.value;
+      setEnterName(event){
+        this.entername = event.target.value;
+      },
+      enterName(){
+        this.confirmedEntername = this.entername;
       }
 
     }
