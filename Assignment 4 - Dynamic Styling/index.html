@@ -21,7 +21,7 @@
       <!-- The entered class should be added to the below paragraph -->
       <input type="text" v-Model="userDefinedClass"/>
       <!-- (available classes: "user1", "user2") -->
-      <p :class="{user1:userDefinedClass==='user1', user2:userDefinedClass==='user2',visible:show,hidden:hide}">
+      <p :class="{ user1:userDefinedClass==='user1', user2:userDefinedClass==='user2',visible:show,hidden:hide}">
         Style me!
       </p>
       <button @click="toggleParagraph">Toggle Paragraph</button>
