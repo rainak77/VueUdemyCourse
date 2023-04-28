@@ -69,7 +69,7 @@ export default {
         },
         togglefavorite() {
             // this.friendIsFavorite = !this.friendIsFavorite;
-            this.$emit('toggle-favorite');
+            this.$emit('toggle-favorite',this.id);
 
         },
     }    
