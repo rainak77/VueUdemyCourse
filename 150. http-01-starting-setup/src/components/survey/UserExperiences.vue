@@ -5,13 +5,10 @@
       <div>
         <base-button @click="loadExperience">Load Submitted Experiences</base-button>
       </div>
-      <ul>
-        <survey-result
-          v-for="result in results"
-          :key="result.id"
-          :name="result.name"
-          :rating="result.rating"
-        ></survey-result>
+      <p v-if="isLoading">Loading ...</p>
+      <ul v-else>
+        <survey-result v-for="result in results" :key="result.id" :name="result.name"
+          :rating="result.rating"></survey-result>
       </ul>
     </base-card>
   </section>
@@ -21,30 +18,38 @@
 import axios from 'axios';
 import SurveyResult from './SurveyResult.vue';
 
-export default { 
+export default {
   components: {
     SurveyResult,
   },
-  data(){
+  data() {
     return {
-      results: []
+      results: [],
+      isLoading: false
     }
   },
   methods: {
-   loadExperience(){
-    axios.get('https://vue-http-f7291-default-rtdb.europe-west1.firebasedatabase.app/surveys.json').then((res)=> {
-      for (const key in res.data ) {
-        this.results.push({
-          id: key,
-          name: res.data[key].name,
-          rating: res.data[key].rating,
-        })       
-      }
-      // this.results = res.data;  
-    
-    
-    });
+    loadExperience() {
+      this.isLoading = true;
+      axios.get('https://vue-http-f7291-default-rtdb.europe-west1.firebasedatabase.app/surveys.json')
+        .then((res) => {
+          this.isLoading=false;
+          for (const key in res.data) {
+            this.results.push({
+              id: key,
+              name: res.data[key].name,
+              rating: res.data[key].rating,
+            })
+          }
+          // this.results = res.data;    
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
     }
+  },
+  mounted() {
+    this.loadExperience();
   }
   // loadExperience() {
   //     ((state) => {
