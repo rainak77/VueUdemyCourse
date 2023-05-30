@@ -37,6 +37,7 @@ export default {
       enteredName: '',
       chosenRating: null,
       invalidInput: false,
+      error:null
     };
   },
   // emits: ['survey-submit'],
@@ -63,8 +64,14 @@ export default {
       axios.post('https://vue-http-f7291-default-rtdb.europe-west1.firebasedatabase.app/surveys.json', {
         name: this.enteredName,
         rating: this.chosenRating,
+      })
+      .then(()=>{
+
+      })
+      .catch(()=>{
+        
       });
-      
+
       this.enteredName = '';
       this.chosenRating = null;
     },
