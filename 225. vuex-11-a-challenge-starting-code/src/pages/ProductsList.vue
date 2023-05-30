@@ -17,11 +17,15 @@
 <script>
 import ProductItem from '../components/products/ProductItem.vue';
 
-export default {
-  inject: ['products'],
+export default {  
   components: {
-    ProductItem,
+    ProductItem
   },
+  computed:{
+    products(){ 
+     return this.$store.getters['prods/products']
+    }    
+  }
 };
 </script>
 
