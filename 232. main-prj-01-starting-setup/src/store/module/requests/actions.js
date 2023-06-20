@@ -23,8 +23,10 @@ export default {
   },
   async loadcontact(context){
     const coachId = context.rootGetters.userId;
+    const token = context.rootGetters.token;
+
     const response = await fetch(
-        `https://vue-http-demo-arif-default-rtdb.europe-west1.firebasedatabase.app/contacts/${coachId}.json`       
+        `https://vue-http-demo-arif-default-rtdb.europe-west1.firebasedatabase.app/contacts/${coachId}.json?auth=`+ token       
       );
       const responseData = await response.json(); 
       if (!response.ok) {

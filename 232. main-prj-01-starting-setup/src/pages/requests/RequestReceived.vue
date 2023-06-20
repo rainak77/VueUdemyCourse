@@ -46,7 +46,7 @@ export default {
             try {
                 await this.$store.dispatch('requests/loadcontact')
             } catch (error) {
-                this.errorerror = error.message || 'some thing has failed'
+                this.error = error.message || 'some thing has failed'
             }
             this.isLoading = false;
         },
